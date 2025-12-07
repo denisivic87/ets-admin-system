@@ -1,0 +1,6 @@
+TEST_001_initial_300.xml -> 300 records
+TEST_002_all_hitno.xml -> 300 records (all hitno true)
+TEST_003_hitno_reset.xml -> 300 records (all hitno false)
+TEST_004_bulk_changed.xml -> 300 records (invoice changed)
+TEST_005_after_delete.xml -> 286 records
+TEST_006_after_add.xml -> 336 records

@@ -1,0 +1,56 @@
+
+> vite-react-typescript-starter@0.0.0 lint
+> eslint .
+
+
+C:\Users\denis\Desktop\1\project\src\App.tsx
+    2:62  error  'Printer' is defined but never used                     @typescript-eslint/no-unused-vars
+    5:10  error  'User' is defined but never used                        @typescript-eslint/no-unused-vars
+   10:25  error  'BulkEditData' is defined but never used                @typescript-eslint/no-unused-vars
+   70:26  error  'setPrefillEnabled' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  568:36  error  Unexpected any. Specify a different type                @typescript-eslint/no-explicit-any
+
+C:\Users\denis\Desktop\1\project\src\components\AdminDashboard.tsx
+  119:14  error  'error' is defined but never used  @typescript-eslint/no-unused-vars
+  159:14  error  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\denis\Desktop\1\project\src\components\BulkEditModal.tsx
+  57:29  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\denis\Desktop\1\project\src\components\RecordsTable.tsx
+  143:21  error  'isExpanded' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\denis\Desktop\1\project\src\components\SequenceIntegrityMonitor.tsx
+  59:6  warning  React Hook useEffect has a missing dependency: 'checkIntegrity'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\denis\Desktop\1\project\src\components\XmlValidator.tsx
+   16:42  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   17:54  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   72:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  103:19  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  184:66  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\denis\Desktop\1\project\src\lib\database.ts
+  164:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  282:37  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+C:\Users\denis\Desktop\1\project\src\services\emailService.ts
+  14:10  error  'error' is defined but never used  @typescript-eslint/no-unused-vars
+
+C:\Users\denis\Desktop\1\project\src\utils\auth.ts
+  111:48  error  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 19 problems (18 errors, 1 warning)
+
+
+> vite-react-typescript-starter@0.0.0 typecheck
+> tsc --noEmit -p tsconfig.app.json
+
+src/App.tsx(2,62): error TS6133: 'Printer' is declared but its value is never read.
+src/App.tsx(5,10): error TS6133: 'User' is declared but its value is never read.
+src/App.tsx(10,25): error TS6133: 'BulkEditData' is declared but its value is never read.
+src/App.tsx(70,26): error TS6133: 'setPrefillEnabled' is declared but its value is never read.
+src/App.tsx(253,25): error TS6133: 'index' is declared but its value is never read.
+src/components/AdminDashboard.tsx(486,71): error TS2322: Type '"active" | "pending" | "suspended"' is not assignable to type '"active"'.
+  Type '"pending"' is not assignable to type '"active"'.
+src/components/RecordsTable.tsx(143,21): error TS6133: 'isExpanded' is declared but its value is never read.

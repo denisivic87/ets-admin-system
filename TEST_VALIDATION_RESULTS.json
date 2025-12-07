@@ -1,0 +1,62 @@
+[
+  {
+    "file": "TEST_001_initial_300.xml",
+    "total": 300,
+    "hitno": 100,
+    "missingFields": 0,
+    "duplicates": 0,
+    "invalidAmounts": 0,
+    "invalidDates": 0,
+    "sequenceGaps": false
+  },
+  {
+    "file": "TEST_002_all_hitno.xml",
+    "total": 300,
+    "hitno": 300,
+    "missingFields": 0,
+    "duplicates": 0,
+    "invalidAmounts": 0,
+    "invalidDates": 0,
+    "sequenceGaps": false
+  },
+  {
+    "file": "TEST_003_hitno_reset.xml",
+    "total": 300,
+    "hitno": 0,
+    "missingFields": 0,
+    "duplicates": 0,
+    "invalidAmounts": 0,
+    "invalidDates": 0,
+    "sequenceGaps": false
+  },
+  {
+    "file": "TEST_004_bulk_changed.xml",
+    "total": 300,
+    "hitno": 0,
+    "missingFields": 0,
+    "duplicates": 0,
+    "invalidAmounts": 0,
+    "invalidDates": 0,
+    "sequenceGaps": false
+  },
+  {
+    "file": "TEST_005_after_delete.xml",
+    "total": 286,
+    "hitno": 0,
+    "missingFields": 0,
+    "duplicates": 0,
+    "invalidAmounts": 0,
+    "invalidDates": 0,
+    "sequenceGaps": false
+  },
+  {
+    "file": "TEST_006_after_add.xml",
+    "total": 336,
+    "hitno": 0,
+    "missingFields": 0,
+    "duplicates": 0,
+    "invalidAmounts": 0,
+    "invalidDates": 0,
+    "sequenceGaps": false
+  }
+]

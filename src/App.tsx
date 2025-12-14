@@ -93,6 +93,8 @@ export default function App() {
         onAdminLogin={() => setShowAdminLogin(true)}
         error="" 
       />
+            <br />
+      <button onClick={() => { localStorage.clear(); window.location.reload(); }} style={{ padding: '4px 8px', backgroundColor: '#6366f1', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', marginTop: '10px' }}>DEBUG: Clear Storage & Reload</button>
     );
   }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LoginForm } from './components/LoginForm';
 import { AdminLoginForm } from './components/AdminLoginForm';
+import { AdminDashboard } from './components/AdminDashboard';
 
 interface User {
   username: string;
@@ -118,10 +119,7 @@ export default function App() {
           </button>
         </div>
       </div>
-      <div style={{ backgroundColor: '#f3f4f6', padding: '20px', borderRadius: '8px' }}>
-        <h2>Dobrodošli u ETS Admin System!</h2>
-        <p>Korisnik je uspješno logovan kao <strong>{currentUser?.role}</strong> i aplikacija je spremna za rad.</p>
-      </div>
+<AdminDashboard />
     </div>
   );
 }

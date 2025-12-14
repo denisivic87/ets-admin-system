@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { LoginForm } from './components/LoginForm';
+import { AdminLoginForm } from './components/AdminLoginForm';
 
 interface User {
   username: string;
@@ -10,6 +11,8 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showAdminLogin, setShowAdminLogin] = useState(false);
+  const [adminError, setAdminError] = useState('');
 
   useEffect(() => {
     // Check if user is already logged in
@@ -37,10 +40,30 @@ export default function App() {
     setIsLoggedIn(true);
   };
 
+  const handleAdminLogin = (credentials: { username: string; password: string }) => {
+    // Admin login with verification
+    // For demo purposes, accept any non-empty credentials
+    if (credentials.username.trim() && credentials.password.trim()) {
+      const user: User = {
+        username: credentials.username,
+        role: 'admin'
+      };
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      setCurrentUser(user);
+      setIsLoggedIn(true);
+      setShowAdminLogin(false);
+      setAdminError('');
+    } else {
+      setAdminError('Unesite korisničko ime i lozinku');
+    }
+  };
+
   const handleLogout = () => {
     localStorage.removeItem('currentUser');
     setCurrentUser(null);
     setIsLoggedIn(false);
+    setShowAdminLogin(false);
+    setAdminError('');
   };
 
   if (loading) {
@@ -52,7 +75,25 @@ export default function App() {
   }
 
   if (!isLoggedIn) {
-    return <LoginForm onLogin={handleLogin} onAdminLogin={() => {}} error="" />;
+    if (showAdminLogin) {
+      return (
+        <AdminLoginForm 
+          onLogin={handleAdminLogin}
+          onBack={() => {
+            setShowAdminLogin(false);
+            setAdminError('');
+          }}
+          error={adminError}
+        />
+      );
+    }
+    return (
+      <LoginForm 
+        onLogin={handleLogin} 
+        onAdminLogin={() => setShowAdminLogin(true)}
+        error="" 
+      />
+    );
   }
 
   return (
@@ -78,7 +119,7 @@ export default function App() {
       </div>
       <div style={{ backgroundColor: '#f3f4f6', padding: '20px', borderRadius: '8px' }}>
         <p>Dobrodošli u ETS Admin System!</p>
-        <p>Korisnik je uspješno logovan i aplikacija je spremna za rad.</p>
+        <p>Korisnik je uspješno logovan kao <strong>{currentUser?.role}</strong> i aplikacija je spremna za rad.</p>
       </div>
     </div>
   );

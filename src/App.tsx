@@ -12,10 +12,10 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [showAdminLogin, setShowAdminLogin] = useState(false);
+  const [loginError, setLoginError] = useState('');
   const [adminError, setAdminError] = useState('');
 
   useEffect(() => {
-    // Check if user is already logged in
     const savedUser = localStorage.getItem('currentUser');
     if (savedUser) {
       try {
@@ -29,21 +29,21 @@ export default function App() {
     setLoading(false);
   }, []);
 
-  const handleLogin = (credentials: { username: string; password: string }, isAdmin: boolean) => {
-    // Simple demo login - in real app, verify with backend
-    const user: User = {
-      username: credentials.username,
-      role: isAdmin ? 'admin' : 'user'
-    };
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    setCurrentUser(user);
-    setIsLoggedIn(true);
+  const handleUserLogin = (credentials: { username: string; password: string }) => {
+    if (credentials.username && credentials.password) {
+      const user: User = {
+        username: credentials.username,
+        role: 'user'
+      };
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      setCurrentUser(user);
+      setIsLoggedIn(true);
+      setLoginError('');
+    }
   };
 
   const handleAdminLogin = (credentials: { username: string; password: string }) => {
-    // Admin login with verification
-    // For demo purposes, accept any non-empty credentials
-    if (credentials.username.trim() && credentials.password.trim()) {
+    if (credentials.username && credentials.password) {
       const user: User = {
         username: credentials.username,
         role: 'admin'
@@ -63,6 +63,7 @@ export default function App() {
     setCurrentUser(null);
     setIsLoggedIn(false);
     setShowAdminLogin(false);
+    setLoginError('');
     setAdminError('');
   };
 
@@ -89,12 +90,10 @@ export default function App() {
     }
     return (
       <LoginForm 
-        onLogin={handleLogin} 
+        onLogin={handleUserLogin} 
         onAdminLogin={() => setShowAdminLogin(true)}
-        error="" 
+        error={loginError}
       />
-            <br />
-      <button onClick={() => { localStorage.clear(); window.location.reload(); }} style={{ padding: '4px 8px', backgroundColor: '#6366f1', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '12px', marginTop: '10px' }}>DEBUG: Clear Storage & Reload</button>
     );
   }
 
@@ -102,7 +101,7 @@ export default function App() {
     <div style={{ padding: '20px', fontFamily: 'Arial' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
         <h1>ETS Admin System</h1>
-        <div>
+        <div style={{ textAlign: 'right' }}>
           <p>Korisnik: <strong>{currentUser?.username}</strong> ({currentUser?.role})</p>
           <button 
             onClick={handleLogout}
@@ -120,7 +119,7 @@ export default function App() {
         </div>
       </div>
       <div style={{ backgroundColor: '#f3f4f6', padding: '20px', borderRadius: '8px' }}>
-        <p>Dobrodošli u ETS Admin System!</p>
+        <h2>Dobrodošli u ETS Admin System!</h2>
         <p>Korisnik je uspješno logovan kao <strong>{currentUser?.role}</strong> i aplikacija je spremna za rad.</p>
       </div>
     </div>
